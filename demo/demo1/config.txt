@@ -1,0 +1,6 @@
+{
+    //name is a property
+    "name": String
+    
+    "age" : Int //this is user's age
+}

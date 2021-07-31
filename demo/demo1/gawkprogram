@@ -1,0 +1,49 @@
+function remove_single_line_comment(lineStr) {
+    start = index(lineStr, "//")
+    if (start == 0) {
+        return lineStr
+    }
+    #rest = substr(lineStr, start + 2)
+    return substr(lineStr, 1, start - 1)
+}
+
+function remove_multi_line_comment(orignal) {
+    print "match: " match(orignal, "*") 
+}
+
+function remove_unnecessary_space(lineStr) {
+
+}
+
+function convert(orignal) {
+    tmp = orignal
+    gsub(" ", "", tmp)
+    split(tmp, arr, ":")
+    if (arr[2] == "Int") {
+        return "@property(nonatomic, assign) NSInteger " arr[1]
+    } else if (arr[2] == "String") {
+        return "@property(nonatomic, copy) NSString " arr[1]
+    } else {
+        return orignal
+    }
+}
+
+function parseLine(lineStr) {
+    res = remove_single_line_comment(lineStr) #remove_single_line_comment(tmp)
+    convertStr = convert(res)
+    return convertStr
+}
+
+# 定义的变量是全局的， 如tmp 
+
+BEGIN { 
+    print "begin output" 
+}
+{
+    print parseLine($0)
+    while ((getline tmp) > 0) {
+        print parseLine(tmp)
+    }
+}
+
+END { print "end output" }

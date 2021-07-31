@@ -1,0 +1,11 @@
+#!/bin/bash
+gawk 'BEGIN{ FS = "."} ; {print $2"."$3}' data1
+#gawk 'BEGIN{ FS = "."} ; {print $2.$3}' data1
+#will output the follow data 
+#data12data13
+#data22data23
+#data32data33
+
+# or 
+# you can use "gawk -f gawkProgram data1" 
+# the setence does same thing
